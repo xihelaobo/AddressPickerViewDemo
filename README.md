@@ -1,12 +1,18 @@
 # AddressPickerViewDemo
 这是一个地址选择工具类,提供三种模式可供选择.
-```核心类
+
+核心类
+```
 #import "AddressPickerView.h"
 ```
-```数据源类
+
+数据源类
+```
 #import "AddressDataSource.h"
 ```
-```在控制器中的调用
+
+在控制器中的调用
+```
 //用一个按钮的点击事件来调起地址选择器
 _button = [UIButton buttonWithType:UIButtonTypeCustom];
 _button.frame = CGRectMake(50, 30, 100, 50);
