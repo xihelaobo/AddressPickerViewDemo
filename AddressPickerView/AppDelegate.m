@@ -24,6 +24,8 @@
     [navc.navigationBar setTranslucent:NO];
     self.window.rootViewController = navc;
     
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
