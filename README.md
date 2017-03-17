@@ -30,7 +30,7 @@ _button.backgroundColor = [UIColor redColor];
         [weakSelf.addressPickerView hiddenInView];
     };
     _addressPickerView.sureBtnBlock = ^(NSString *province, NSString *city, NSString *district, NSString *addressCode) {
-        //返回过来的信息在后面的这四个参数中,使用的时候要做非空判断
+        //返回过来的信息在后面的这四个参数中,使用的时候要做非空判断(province和addressCode为必返回参数,可以不做非空判断)
         
         NSString *showString;
         
