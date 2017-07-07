@@ -35,7 +35,7 @@
 }
 
 - (void)getSource {
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"citys" ofType:@"json"];
     NSData *data=[NSData dataWithContentsOfFile:jsonPath];
     NSError *error;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
@@ -52,7 +52,7 @@
         [_provinceMutableArray removeAllObjects];
     }
     [_allMutableArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[obj valueForKey:@"ParentCode"] isEqual:@(0)]) {
+        if ([[obj valueForKey:@"levelInt"] isEqual:@(1)]) {
             [_provinceMutableArray addObject:obj];
         }
     }];
@@ -67,7 +67,7 @@
         [_cityMutableArray removeAllObjects];
     }
     [_allMutableArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[obj valueForKey:@"ParentCode"] isEqual:@(code)]) {
+        if ([[obj valueForKey:@"parentAdcode"] integerValue] == code) {
             [_cityMutableArray addObject:obj];
         }
     }];
@@ -82,7 +82,7 @@
         [_districtMutableArray removeAllObjects];
     }
     [_allMutableArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[obj valueForKey:@"ParentCode"] isEqual:@(code)]) {
+        if ([[obj valueForKey:@"parentAdcode"] integerValue] == code) {
             [_districtMutableArray addObject:obj];
         }
     }];

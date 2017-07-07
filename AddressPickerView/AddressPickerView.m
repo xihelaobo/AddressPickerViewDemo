@@ -61,27 +61,27 @@
     if (_addressPickerViewModel == kAddressPickerViewModelAll) {
         //获取省份数据源
         _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
+        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
         //获取市数据源
-        _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-        _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
+        _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+        _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
         //获取区数据源
-        _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-        _districtString = [_districtMutableArray.firstObject valueForKey:@"RegName"];
-        _addressCodeString = [[_districtMutableArray.firstObject valueForKey:@"Code"] stringValue];
+        _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+        _districtString = [_districtMutableArray.firstObject valueForKey:@"name"];
+        _addressCodeString = [_districtMutableArray.firstObject valueForKey:@"adcode"];
     }else if (_addressPickerViewModel == kAddressPickerViewModelProvinceCity) {
         //获取省份数据源
         _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
+        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
         //获取市数据源
-        _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-        _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
-        _addressCodeString = [[_cityMutableArray.firstObject valueForKey:@"Code"] stringValue];
+        _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+        _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
+        _addressCodeString = [_cityMutableArray.firstObject valueForKey:@"adcode"];
     }else{
         //获取省份数据源
         _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
-        _addressCodeString = [[_provinceMutableArray.firstObject valueForKey:@"Code"] stringValue];
+        _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
+        _addressCodeString = [_provinceMutableArray.firstObject valueForKey:@"adcode"];
     }
     
     
@@ -151,21 +151,21 @@
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (_addressPickerViewModel == kAddressPickerViewModelAll) {
         if (component == 0) {
-            return [_provinceMutableArray[row] valueForKey:@"RegName"];
+            return [_provinceMutableArray[row] valueForKey:@"name"];
         }else if (component == 1) {
-            return [_cityMutableArray[row] valueForKey:@"RegName"];
+            return [_cityMutableArray[row] valueForKey:@"name"];
         }else{
-            return [_districtMutableArray[row] valueForKey:@"RegName"];
+            return [_districtMutableArray[row] valueForKey:@"name"];
         }
     }else if (_addressPickerViewModel == kAddressPickerViewModelProvinceCity) {
         if (component == 0) {
-            return [_provinceMutableArray[row] valueForKey:@"RegName"];
+            return [_provinceMutableArray[row] valueForKey:@"name"];
         }else{
-            return [_cityMutableArray[row] valueForKey:@"RegName"];
+            return [_cityMutableArray[row] valueForKey:@"name"];
         }
     }else if (_addressPickerViewModel == kAddressPickerViewModelProvince) {
         if (component == 0) {
-            return [_provinceMutableArray[row] valueForKey:@"RegName"];
+            return [_provinceMutableArray[row] valueForKey:@"name"];
         }
     }
     return nil;
@@ -174,50 +174,50 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (_addressPickerViewModel == kAddressPickerViewModelAll) {
         if (component == 0) {
-            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray[row] valueForKey:@"Code"] integerValue]];
-            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"Code"] integerValue]];
+            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray[row] valueForKey:@"adcode"] integerValue]];
+            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
             [_pickerView selectRow:0 inComponent:1 animated:NO];
             [_pickerView selectRow:0 inComponent:2 animated:NO];
             [_pickerView reloadAllComponents];
             
-            _provinceString = [_provinceMutableArray[row] valueForKey:@"RegName"];
-            _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
-            _districtString = [_districtMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_districtMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _provinceString = [_provinceMutableArray[row] valueForKey:@"name"];
+            _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
+            _districtString = [_districtMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_districtMutableArray.firstObject valueForKey:@"adcode"];
             
         }else if (component == 1) {
-            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray[row] valueForKey:@"Code"] integerValue]];
+            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray[row] valueForKey:@"adcode"] integerValue]];
             [_pickerView selectRow:0 inComponent:2 animated:NO];
             [_pickerView reloadAllComponents];
             
-            _cityString = [_cityMutableArray[row] valueForKey:@"RegName"];
-            _districtString = [_districtMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_districtMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _cityString = [_cityMutableArray[row] valueForKey:@"name"];
+            _districtString = [_districtMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_districtMutableArray.firstObject valueForKey:@"adcode"];
             
         }else{
             [_pickerView reloadAllComponents];
-            _districtString = [_districtMutableArray[row] valueForKey:@"RegName"];
-            _addressCodeString = [[_districtMutableArray[row] valueForKey:@"Code"] stringValue];
+            _districtString = [_districtMutableArray[row] valueForKey:@"name"];
+            _addressCodeString = [_districtMutableArray[row] valueForKey:@"adcode"];
         }
     }else if (_addressPickerViewModel == kAddressPickerViewModelProvinceCity) {
         if (component == 0) {
-            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray[row] valueForKey:@"Code"] integerValue]];
+            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray[row] valueForKey:@"adcode"] integerValue]];
             [_pickerView selectRow:0 inComponent:1 animated:NO];
             [_pickerView reloadAllComponents];
             
-            _provinceString = [_provinceMutableArray[row] valueForKey:@"RegName"];
-            _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_cityMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _provinceString = [_provinceMutableArray[row] valueForKey:@"name"];
+            _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_cityMutableArray.firstObject valueForKey:@"adcode"];
             
         }else{
             [_pickerView reloadAllComponents];
-            _cityString = [_cityMutableArray[row] valueForKey:@"RegName"];
-            _addressCodeString = [[_cityMutableArray[row] valueForKey:@"Code"] stringValue];
+            _cityString = [_cityMutableArray[row] valueForKey:@"name"];
+            _addressCodeString = [_cityMutableArray[row] valueForKey:@"adcode"];
         }
     }else if (_addressPickerViewModel == kAddressPickerViewModelProvince) {
         [_pickerView reloadAllComponents];
-        _provinceString = [_provinceMutableArray[row] valueForKey:@"RegName"];
-        _addressCodeString = [[_provinceMutableArray[row] valueForKey:@"Code"] stringValue];
+        _provinceString = [_provinceMutableArray[row] valueForKey:@"name"];
+        _addressCodeString = [_provinceMutableArray[row] valueForKey:@"adcode"];
     }
 }
 
@@ -245,14 +245,14 @@
         if (_addressPickerViewModel == kAddressPickerViewModelAll) {
             //获取省份数据源
             _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
+            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
             //获取市数据源
-            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-            _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
+            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+            _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
             //获取区数据源
-            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-            _districtString = [_districtMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_districtMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _districtMutableArray = [_addressDataSource getdistrictMutableArray:[[_cityMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+            _districtString = [_districtMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_districtMutableArray.firstObject valueForKey:@"adcode"];
             
             [_pickerView selectRow:0 inComponent:0 animated:NO];
             [_pickerView selectRow:0 inComponent:1 animated:NO];
@@ -262,11 +262,11 @@
         }else if (_addressPickerViewModel == kAddressPickerViewModelProvinceCity) {
             //获取省份数据源
             _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
+            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
             //获取市数据源
-            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"Code"] integerValue]];
-            _cityString = [_cityMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_cityMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _cityMutableArray = [_addressDataSource getcityMutableArray:[[_provinceMutableArray.firstObject valueForKey:@"adcode"] integerValue]];
+            _cityString = [_cityMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_cityMutableArray.firstObject valueForKey:@"adcode"];
             
             [_pickerView selectRow:0 inComponent:0 animated:NO];
             [_pickerView selectRow:0 inComponent:1 animated:NO];
@@ -275,8 +275,8 @@
         }else{
             //获取省份数据源
             _provinceMutableArray = [_addressDataSource getProvinceMutableArray];
-            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"RegName"];
-            _addressCodeString = [[_provinceMutableArray.firstObject valueForKey:@"Code"] stringValue];
+            _provinceString = [_provinceMutableArray.firstObject valueForKey:@"name"];
+            _addressCodeString = [_provinceMutableArray.firstObject valueForKey:@"adcode"];
             
             [_pickerView selectRow:0 inComponent:0 animated:NO];
             

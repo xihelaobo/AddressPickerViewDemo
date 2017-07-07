@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC7F40301F0F66980094B5C2 /* citys.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7F402F1F0F66980094B5C2 /* citys.json */; };
 		ECBCA51D1E764B9100D26E78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBCA51C1E764B9100D26E78 /* main.m */; };
 		ECBCA5201E764B9100D26E78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBCA51F1E764B9100D26E78 /* AppDelegate.m */; };
 		ECBCA5231E764B9100D26E78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBCA5221E764B9100D26E78 /* ViewController.m */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC7F402F1F0F66980094B5C2 /* citys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citys.json; sourceTree = "<group>"; };
 		ECBCA5181E764B9100D26E78 /* AddressPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBCA51C1E764B9100D26E78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ECBCA51E1E764B9100D26E78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				ECBCA5531E767BC700D26E78 /* AddressDataSource.h */,
 				ECBCA5541E767BC700D26E78 /* AddressDataSource.m */,
 				ECBCA5511E767B6B00D26E78 /* city.json */,
+				EC7F402F1F0F66980094B5C2 /* citys.json */,
 				ECBCA5241E764B9100D26E78 /* Main.storyboard */,
 				ECBCA5271E764B9100D26E78 /* Assets.xcassets */,
 				ECBCA5291E764B9100D26E78 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				ECBCA52B1E764B9100D26E78 /* LaunchScreen.storyboard in Resources */,
 				ECBCA5281E764B9100D26E78 /* Assets.xcassets in Resources */,
+				EC7F40301F0F66980094B5C2 /* citys.json in Resources */,
 				ECBCA5521E767B6B00D26E78 /* city.json in Resources */,
 				ECBCA5261E764B9100D26E78 /* Main.storyboard in Resources */,
 			);
